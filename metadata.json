@@ -1,0 +1,7 @@
+{
+  "name": "Copy of HorecaAI Flow Enterprise",
+  "description": "Full-Stack Enterprise ERP for Hospitality Management (React + Node.js + Prisma)",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

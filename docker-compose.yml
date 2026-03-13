@@ -1,0 +1,19 @@
+
+version: '3.8'
+
+services:
+  horeca-app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - horeca_data:/app/backend/data
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:../data/prod.db
+      # Add your Gemini API Key here for AI features
+      - API_KEY=${API_KEY}
+    restart: unless-stopped
+
+volumes:
+  horeca_data:

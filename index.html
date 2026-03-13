@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HorecaAI Flow ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- AG Grid Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@31.0.0/styles/ag-grid.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@31.0.0/styles/ag-theme-quartz.css" />
+    <style>
+      body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+      
+      /* Custom scrollbar for sleeker look */
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+      
+      /* Utilities */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      /* Animations */
+      @keyframes shimmer {
+        0% { transform: translateX(-100%) skewX(12deg); }
+        100% { transform: translateX(200%) skewX(12deg); }
+      }
+      
+      .animate-spin-slow {
+        animation: spin 8s linear infinite;
+      }
+      
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      /* AG Grid Customization */
+      .ag-theme-quartz {
+        --ag-background-color: #ffffff;
+        --ag-header-background-color: #f1f5f9;
+        --ag-row-hover-color: #f8fafc;
+        --ag-selected-row-background-color: #eff6ff;
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* PRINT STYLES */
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        
+        .print-container, .print-container * {
+          visibility: visible;
+        }
+
+        .print-container {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          background: white;
+        }
+
+        /* 80mm Thermal Receipt Styling */
+        .thermal-receipt {
+          width: 80mm;
+          max-width: 80mm;
+          font-family: 'Courier New', Courier, monospace; /* Monospace for alignment */
+          font-size: 12px;
+          line-height: 1.2;
+          color: black;
+          padding: 5px;
+        }
+        
+        .thermal-receipt h1 { font-size: 16px; font-weight: bold; text-align: center; margin-bottom: 5px; }
+        .thermal-receipt h2 { font-size: 14px; font-weight: bold; text-align: center; border-bottom: 2px dashed black; padding-bottom: 5px; margin-bottom: 5px; }
+        .thermal-receipt .item { display: flex; justify-content: space-between; margin-bottom: 2px; }
+        .thermal-receipt .modifier { font-size: 10px; margin-left: 15px; font-style: italic; }
+        .thermal-receipt .footer { text-align: center; margin-top: 10px; border-top: 1px dashed black; padding-top: 5px; font-size: 10px; }
+        
+        /* Traceability Labels (Stickers) */
+        .label-item {
+            width: 50mm;
+            height: 30mm;
+            border: 1px solid black;
+            border-radius: 4px;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            font-family: sans-serif;
+            position: relative;
+            page-break-inside: avoid;
+        }
+        
+        .label-header {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 6px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .label-body {
+            flex: 1;
+            padding-right: 2px;
+        }
+        
+        .label-name {
+            font-size: 10px;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 2px;
+            margin-top: 6px;
+        }
+        
+        .label-meta {
+            font-size: 8px;
+        }
+        
+        .label-qr img {
+            width: 25mm;
+            height: 25mm;
+        }
+
+        /* Hide UI elements specifically */
+        .no-print { display: none !important; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
+    "lucide-react": "https://esm.sh/lucide-react@0.330.0?deps=react@18.2.0",
+    "recharts": "https://esm.sh/recharts@2.12.0?deps=react@18.2.0,react-dom@18.2.0",
+    "ag-grid-react": "https://esm.sh/ag-grid-react@31.0.0?deps=react@18.2.0,react-dom@18.2.0",
+    "ag-grid-community": "https://esm.sh/ag-grid-community@31.0.0",
+    "@google/genai": "https://esm.sh/@google/genai@1.30.0",
+    "socket.io-client": "https://esm.sh/socket.io-client@4.8.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
